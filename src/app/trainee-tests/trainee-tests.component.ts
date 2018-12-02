@@ -8,15 +8,20 @@ import { TraineeTestSearch, TraineeTest } from '../models/trainee-test-search';
 })
 export class TraineeTestsComponent implements OnInit {
   @Input() searchData: TraineeTestSearch;
+  public currentTrainee: TraineeTest;
 
   // searchData: TraineeTestSearch;
   traineeTestList: Array<TraineeTest> = [];
 
-  constructor() {
-
+  constructor() { 
    }
 
   ngOnInit() {
+    this.traineeTestList = this.searchData.data;
   }
 
+  onSelect(record) {
+    this.currentTrainee = record;
+    console.log(this.currentTrainee);
+  }
 }

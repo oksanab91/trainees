@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   // public currentJogging: any;
   public traineeTestSearch: TraineeTestSearch;
   // public traineeTestList: TraineeTest[] = [];
-  public currentTraineeTest: TraineeTest;
+  // public currentTraineeTest: TraineeTest;
 
   constructor(private traineeTestService: TraineeTestsService) { 
     this.traineeTestService.get()
