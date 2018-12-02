@@ -1,0 +1,21 @@
+<a href="#" id="new-button">New Trainee</a>
+<table>
+  <thead>
+      <tr>
+          <th>Trainee Name</th>
+          <th>Test</th>
+          <th>Subject</th>          
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let traineeeInfo of traineeTestList">             
+        <td>{{ traineeeInfo.traineeName }}</td>
+        <td>{{ traineeeInfo.testName }}</td>
+        <td>{{ traineeeInfo.subjectName }}</td>
+        <td>
+            <a href="#" (click)="editRecord(this)">Edit Trainee</a>
+            <a href="#" (click)="deleteRecord(this)">Delete Trainee</a>
+        </td>
+    </tr>
+  </tbody>
+</table>
