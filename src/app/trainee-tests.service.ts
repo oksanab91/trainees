@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TraineeTest, TraineeTestSearch } from './models/trainee-test-search';
+import { TraineeTestSearch } from './models/trainee-test-search';
 import { Observable, of } from 'rxjs';
+// import { map, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Observable, of } from 'rxjs';
 })
 export class TraineeTestsService {
   private headers: HttpHeaders;
-  private accessPointUrl: string = 'http://localhost:44306/api/traineeTests/';
+  private accessPointUrl: string = 'http://localhost:44306/api/traineeTests';
   
 
   constructor(private http: HttpClient) {
@@ -18,12 +19,11 @@ export class TraineeTestsService {
   }
 
   public get(): Observable<TraineeTestSearch> {
-    // Get all trainees' tets data
-    // return this.http.get(this.accessPointUrl, {headers: this.headers});
-    let data: TraineeTest[] = records;
-    let search: TraineeTestSearch = new TraineeTestSearch(data, data.length);
-
-    return of(search);
+    // Get all trainees' tests data
+    return this.http.get(this.accessPointUrl, {headers: this.headers})
+    .pipe( 
+      d => of(new TraineeTestSearch(records, records.length ))
+      );      
   }
 
   public add(payload) {
@@ -59,16 +59,3 @@ const records = [
   { traineeName: 'Rita F', testName: 'TestFinal', subjectName:	'Geography' },
   { traineeName: 'Rita F', testName: 'TestFinal', subjectName:	'History' }
 ]
-
-// data: TraineeTest; 
-// {
-//   traineeName: string;
-//   testName: string;
-//   subjectName: string
-// }
-
-// search: TraineeTestSearch;
-// {
-//   data: Array<TraineeTest>;
-//   recordsTotal: number;
-// }
